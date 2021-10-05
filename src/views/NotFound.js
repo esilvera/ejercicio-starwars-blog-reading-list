@@ -5,7 +5,7 @@ const NotFound = (/* { history } */) => {
     const history = useHistory();
     return (
         <>
-            <h5>404 Not Found...</h5>
+            <h5>Page Not Found...</h5>
             <button className="btn btn-warning btn-sm" onClick={() => history.goBack()}>Regresar</button>
         </>
     )

@@ -16,6 +16,9 @@ const injectContext = PassedComponent => {
 
         useEffect(() => {
             state.actions.getApiCharacters();
+            state.actions.getApiPlanets();
+            state.actions.getApiStarShips();
+
         }, [])
 
         return (

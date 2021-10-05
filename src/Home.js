@@ -4,7 +4,7 @@ import Menu from './components/Menu';
 import injectContext from './store/appContext';
 import Characters from './views/Characters';
 import Planets from './views/Planets';
-import Ships from './views/Ships';
+import StarShips from './views/StarShips';
 import NotFound from './views/NotFound';
 
 const Home = () => {
@@ -13,7 +13,7 @@ const Home = () => {
         <BrowserRouter>
             <Menu />
             <Switch>
-                <Route exact path="/ships" component={Ships} />
+                <Route exact path="/starships" component={StarShips} />
                 <Route exact path="/planets" component={Planets} />
                 <Route exact path="/" component={Characters} />
                 <Route component={NotFound} />
