@@ -3,11 +3,11 @@ import { Context } from '../store/appContext';
 
 const StarShips = () => {
 
-    const { store: { starships } } = useContext(Context);
+    const { store: { starships, path, extension } } = useContext(Context);
     const [selected, setSelected] = useState(null);
 
-    const path = "./pictures/";
-    const extension = ".jpg";
+    /* const path = "./pictures/";
+    const extension = ".jpg"; */
 
     useEffect(() => {
         //getApiStarShips();

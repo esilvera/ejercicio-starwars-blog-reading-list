@@ -3,11 +3,11 @@ import { Context } from '../store/appContext';
 
 const Characters = () => {
 
-    const { store: { characters } } = useContext(Context);
+    const { store: { characters, path, extension }, actions: {addFavorite}} = useContext(Context);
     const [selected, setSelected] = useState(null);
 
-    const path = "./pictures/";
-    const extension = ".jpg";
+    /* const path = "./pictures/";
+    const extension = ".jpg"; */
 
     //const [apiCharacters, setApiCharacters] = useState(null);
 
@@ -51,7 +51,6 @@ const Characters = () => {
                                                 <p className="card-text">Peso: {selected.mass}</p>
                                                 <p className="card-text">Sexo: {selected.gender}</p>
                                                 <p className="card-text">Cumpleaños: {selected.birth_year}</p>
-                                                {/* <button className="btn btn-danger btn-sm float-end" onClick={() => setSelected(null)}>Close</button> */}
                                             </p>
                                         </div>
                                         <div className="card-footer">
@@ -72,7 +71,6 @@ const Characters = () => {
                         </div>
                     ) :
                         !!characters &&
-                        //characters.data.results.map((character, index) => {
                         characters.results.map((character, index) => {
                             const { name } = character;
 
@@ -87,6 +85,15 @@ const Characters = () => {
                                                 window.scroll(0, 0)
                                             }}>
                                                 Show Detail
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className="btn-close bg-white float-end"
+                                                //<i class="fal fa-heart-square"></i>
+                                                aria-label="Close"
+                                                onClick={() =>
+                                                    addFavorite(name)
+                                                }>
                                             </button>
                                         </div>
                                     </div>

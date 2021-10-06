@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useLocation, withRouter } from 'react-router-dom';
+import Favorites from './Favorites';
 
 const Menu = (/* { location } */) => {
 
     const location = useLocation();
-    console.log(location);
 
     return (
         <div className="container-fluid">
@@ -30,13 +30,31 @@ const Menu = (/* { location } */) => {
                                 StarShips
                             </Link>
                         </li>
-{/*                         <li className="nav-item">
-                            <Link className={"nav-link" + (location.pathname === '/hola' ? " active" : "")} to="/hola">
-                                Hola
+                        <li className="nav-item dropdown">
+                            <Link
+                                className="nav-link dropdown-toggle" 
+                                data-bs-toggle="dropdown"
+                                href="#"
+                                role="button"
+                                aria-expanded="false"
+                            >
+                                Favorites
                             </Link>
-                        </li> */}
+                            <ul className="dropdown-menu"> 
+                                < Favorites/>  
+{/*                                 <li>
+                                    <Link className="dropdown-item" href="#">
+                                        Action
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link className="dropdown-item" href="#">
+                                        Another action
+                                    </Link>
+                                </li> */}
+                            </ul>
+                        </li>
                     </ul>
-
                 </div>
             </div>
         </div >

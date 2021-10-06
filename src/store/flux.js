@@ -1,4 +1,4 @@
-const getState = ({getStore, getActions, setStore}) => {
+const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
             urlCharacters: "https://swapi.dev/api/people",     // "https://www.swapi.tech/api/people"
@@ -6,17 +6,21 @@ const getState = ({getStore, getActions, setStore}) => {
             urlPlanets: "https://swapi.dev/api/planets",
             planets: null,
             urlStarShips: "https://swapi.dev/api/starships",
-            starships: null
+            starships: null,
+            path: "./pictures/",
+            extension: ".jpg",
+            list: []
+
         },
         actions: {
             getApiCharacters: () => {
-                const {urlCharacters} = getStore();
+                const { urlCharacters } = getStore();
                 fetch(urlCharacters, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'aplication/json',
                     }
-                })  
+                })
                     .then((response) => response.json())
                     .then((data) => {
                         console.log("data characters tiene:", data)
@@ -26,13 +30,13 @@ const getState = ({getStore, getActions, setStore}) => {
                     })
             },
             getApiPlanets: () => {
-                const {urlPlanets} = getStore();
+                const { urlPlanets } = getStore();
                 fetch(urlPlanets, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'aplication/json',
                     }
-                })  
+                })
                     .then((response) => response.json())
                     .then((data) => {
                         console.log("data planets tiene:", data)
@@ -42,13 +46,13 @@ const getState = ({getStore, getActions, setStore}) => {
                     })
             },
             getApiStarShips: () => {
-                const {urlStarShips} = getStore();
+                const { urlStarShips } = getStore();
                 fetch(urlStarShips, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'aplication/json',
                     }
-                })  
+                })
                     .then((response) => response.json())
                     .then((data) => {
                         console.log("data StarShips tiene:", data)
@@ -56,8 +60,40 @@ const getState = ({getStore, getActions, setStore}) => {
                             starships: data
                         })
                     })
+            },
+            addFavorite: (name) => {
+                const { list } = getStore();
+                console.log(name);
+
+                const found = list.find(element => element.favorite === name );
+                if (found) return;
+
+                let newFavorite = {
+                    id: list.length > 0 ? list[list.length - 1].id + 1 : 1,
+                    favorite: name
+                };
+                let newList = [...list]; //Copia del array original
+                newList.push(newFavorite);
+
+                //setList(newList);
+                console.log("newList tiene: ", newList)
+
+                setStore({
+                    list: newList
+                })
+            },
+            deleteFavorite: (evento) => {
+                const { list } = getStore();
+                let newList = [...list];
+                newList.splice(evento, 1);
+                //setList(newList);
+                setStore({
+                    list: newList
+                })
             }
+
         }
     }
 }
+
 export default getState;

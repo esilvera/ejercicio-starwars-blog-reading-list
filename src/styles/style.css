@@ -15,20 +15,21 @@ h5, h2, h4 {
 .card-starship {
   width: 100%;
   height: 200px;
-  /* object-fit: cover; */
   cursor: pointer;
 }
 .card-character {
   width: 100%;
   height: 200px;
  }
-.starship-detail {
+ .card-planet {
+  width: 100%;
+ }
+.starship-detail, .planet-detail {
   width: 100%;
 }
 .character-detail {
   width: 100%;
   height: 320px;
-  /* object-fit: cover; */
 }
 .card-text {
   font-size: 12px;
@@ -39,3 +40,16 @@ h5, h2, h4 {
 .bg-black {
   background-color: #0000;
 }
+.bg-white {
+  background-color: white;
+}
+.card-planet { 
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+.btn-space {
+  margin-top: 135px;
+}
+
+   
