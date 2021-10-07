@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Context } from '../store/appContext';
 
 const Favorites = () => {
@@ -6,7 +6,6 @@ const Favorites = () => {
     const { store: { list }, actions: {deleteFavorite}} = useContext(Context);
     //const [list, setList] = useState([]);
     //const [favorite, setFavorite] = useState("");
-
 
     return (
         <>
@@ -16,17 +15,15 @@ const Favorites = () => {
                     return (
                         <li
                             key={index} // Elemento unico para React
-                            className="dropdown-item d-flex justify-content-between"
+                            className="dropdown-item d-flex justify-content-between text-white s-text bg-black"
                             id={index}>
                             {newFavorite.favorite}
                             <button
                                 type="button"
-                                className="btn-close"
-                                aria-label="Close"
+                                className="d-flex float-end"
                                 onClick={() =>
                                     deleteFavorite(index)
-                                    //alert("boton eliminar")
-                                }></button>
+                                }><i class="far fa-trash-alt"></i></button>
                         </li>
                     );
                 })}
@@ -36,14 +33,3 @@ const Favorites = () => {
 };
 
 export default Favorites;
-
-/* const handleKeypress = evento => {
-    // Verifica si se pulso la tecla enter
-    if (evento.keyCode === 13) {
-        handleSubmit(evento);
-    }
-}; */
-/* if (task.trim() === "") {
-//alert("Debe ingresar una Tarea");
-return;
-} */

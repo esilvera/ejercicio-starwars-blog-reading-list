@@ -3,12 +3,8 @@ import { Context } from '../store/appContext';
 
 const Planets = () => {
 
-    const { store: { planets, path, extension } } = useContext(Context);
+    const { store: { planets, path, extension }, actions: {addFavorite} } = useContext(Context);
     const [selected, setSelected] = useState(null);
-
-    /* const path = "./pictures/";
-    const extension = ".jpg"; */
-
 
     useEffect(() => {
         //getApiPlanets();
@@ -56,18 +52,24 @@ const Planets = () => {
                                 <div className="col-md-6" key={index}>
                                     <div className="card mb-3 info">
                                         <div className="row g-0">
-                                            <div className="col-md-8">
+                                            <div className="col-md-8 bg-black">
                                                 <img src={`${path}${name}${extension}`} className="card-planet" />
                                             </div>
                                             <div className="col-md-4 bg-black">
                                                 <div className="card-body">
-                                                    <h4 className="card-title d-flex justify-content-center">{name}</h4>
-                                                    <button className="btn btn-outline-info btn-space" onClick={() => {
+                                                    <h4 className="card-title">{name}</h4>
+                                                    <button className="btn btn-outline-info btn-detail-planet" onClick={() => {
                                                         setSelected(planet)
                                                         window.scroll(0, 0)
                                                     }}>
                                                         Show Detail
                                                     </button>
+                                                    <button
+                                                        type="button"
+                                                        className="btn-position"
+                                                        onClick={() =>
+                                                            addFavorite(name)
+                                                        }><i class="far fa-heart"></i></button>
                                                 </div>
                                             </div>
                                         </div>

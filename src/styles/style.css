@@ -48,8 +48,17 @@ h5, h2, h4 {
   height: 250px;
   object-fit: cover;
 }
-.btn-space {
-  margin-top: 135px;
+.btn-position {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: center;
+  color: white;
 }
-
-   
+.btn-detail-planet {
+  position: absolute;
+  bottom: 4px;
+}
+.s-text {
+  font-size: smaller;
+}

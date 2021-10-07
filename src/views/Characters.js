@@ -3,11 +3,8 @@ import { Context } from '../store/appContext';
 
 const Characters = () => {
 
-    const { store: { characters, path, extension }, actions: {addFavorite}} = useContext(Context);
+    const { store: { characters, path, extension, condicion }, actions: { addFavorite } } = useContext(Context);
     const [selected, setSelected] = useState(null);
-
-    /* const path = "./pictures/";
-    const extension = ".jpg"; */
 
     //const [apiCharacters, setApiCharacters] = useState(null);
 
@@ -27,11 +24,6 @@ const Characters = () => {
 
     return (
         <div className="container">
-            {/*             <div className="row">
-                <div className="col-md-12">
-                    <h3>Characters STARWARS</h3>
-                </div>
-            </div> */}
             <div className="row">
                 <div className="col-md-6 offset-md-3 py-5">
                     {
@@ -88,13 +80,16 @@ const Characters = () => {
                                             </button>
                                             <button
                                                 type="button"
-                                                className="btn-close bg-white float-end"
-                                                //<i class="fal fa-heart-square"></i>
-                                                aria-label="Close"
+                                                className="btn-position"
                                                 onClick={() =>
                                                     addFavorite(name)
                                                 }>
-                                            </button>
+                                                {
+                                                    condicion ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>
+                                                }
+                                                </button>
+                                                {/* <i class="fas fa-heart"></i> */}
+                                                {/* <i class="far fa-heart"></i> */}
                                         </div>
                                     </div>
                                 </div>

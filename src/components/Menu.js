@@ -40,7 +40,7 @@ const Menu = (/* { location } */) => {
                             >
                                 Favorites
                             </Link>
-                            <ul className="dropdown-menu"> 
+                            <ul className="dropdown-menu bg-secondary"> 
                                 < Favorites/>  
 {/*                                 <li>
                                     <Link className="dropdown-item" href="#">

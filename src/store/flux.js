@@ -1,3 +1,5 @@
+import { findAllByLabelText } from "@testing-library/dom";
+
 const getState = ({ getStore, getActions, setStore }) => {
     return {
         store: {
@@ -9,8 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             starships: null,
             path: "./pictures/",
             extension: ".jpg",
-            list: []
-
+            list: [],
         },
         actions: {
             getApiCharacters: () => {
@@ -63,24 +64,22 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             addFavorite: (name) => {
                 const { list } = getStore();
-                console.log(name);
+                //console.log(name);
 
-                const found = list.find(element => element.favorite === name );
+                const found = list.find(element => element.favorite === name);
                 if (found) return;
+                    let newFavorite = {
+                        id: list.length > 0 ? list[list.length - 1].id + 1 : 1,
+                        favorite: name
+                    };
+                    let newList = [...list]; //Copia del array original
+                    newList.push(newFavorite);
+                    //setList(newList);
+                    //console.log("newList tiene: ", newList)
 
-                let newFavorite = {
-                    id: list.length > 0 ? list[list.length - 1].id + 1 : 1,
-                    favorite: name
-                };
-                let newList = [...list]; //Copia del array original
-                newList.push(newFavorite);
-
-                //setList(newList);
-                console.log("newList tiene: ", newList)
-
-                setStore({
-                    list: newList
-                })
+                    setStore({
+                        list: newList
+                    })
             },
             deleteFavorite: (evento) => {
                 const { list } = getStore();
@@ -91,7 +90,6 @@ const getState = ({ getStore, getActions, setStore }) => {
                     list: newList
                 })
             }
-
         }
     }
 }

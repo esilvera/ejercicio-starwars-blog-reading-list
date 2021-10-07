@@ -3,11 +3,8 @@ import { Context } from '../store/appContext';
 
 const StarShips = () => {
 
-    const { store: { starships, path, extension } } = useContext(Context);
+    const { store: { starships, path, extension }, actions: { addFavorite } } = useContext(Context);
     const [selected, setSelected] = useState(null);
-
-    /* const path = "./pictures/";
-    const extension = ".jpg"; */
 
     useEffect(() => {
         //getApiStarShips();
@@ -31,7 +28,7 @@ const StarShips = () => {
                                         <p className="card-text">Tripulación: {selected.crew}</p>
                                     </p>
                                 </div>
-                                <div className="card-footer">
+                                <div className="card-footer bg-black">
                                     <button className="btn btn-danger btn-sm float-end" onClick={() => setSelected(null)}>Close</button>
                                 </div>
                             </div>
@@ -54,18 +51,15 @@ const StarShips = () => {
                                 <div className="col-md-4 my-3" key={index}>
                                     <div className="card" >
                                         <img src={`${path}${name}${extension}`} className="card-starship" onClick={() => {
-                                                setSelected(starships)
-                                                window.scroll(0, 0)
-                                            }} />
-                                        {/* <div className="card-body">
-                                            <h5 className="card-title">{name}</h5>
-                                            <button className="btn btn-outline-success" onClick={() => {
-                                                setSelected(starships)
-                                                window.scroll(0, 0)
-                                            }}>
-                                                Show Detail
-                                            </button>
-                                        </div> */}
+                                            setSelected(starships)
+                                            window.scroll(0, 0)
+                                        }} />
+                                        <button
+                                            type="button"
+                                            className="btn-position"
+                                            onClick={() =>
+                                                addFavorite(name)
+                                            }><i class="far fa-heart"></i></button>
                                     </div>
                                 </div>
                             )
