@@ -3,7 +3,7 @@ import { Context } from '../store/appContext';
 
 const Characters = () => {
 
-    const { store: { characters, path, extension, condicion }, actions: { addFavorite } } = useContext(Context);
+    const { store: { characters, path, extension, list }, actions: { addFavorite, foundFavorite } } = useContext(Context);
     const [selected, setSelected] = useState(null);
 
     //const [apiCharacters, setApiCharacters] = useState(null);
@@ -65,14 +65,14 @@ const Characters = () => {
                         !!characters &&
                         characters.results.map((character, index) => {
                             const { name } = character;
-
+                            console.log("name antes del return: ", name)
                             return (
                                 <div className="col-md-3 my-2" key={index}>
                                     <div className="card" >
                                         <img src={`${path}${name}${extension}`} className="card-character" />
                                         <div className="card-body">
                                             <h5 className="card-title">{name}</h5>
-                                            <button className="btn btn-outline-success" onClick={() => {
+                                            <button className="btn btn-outline-success btn-sm" onClick={() => {
                                                 setSelected(character)
                                                 window.scroll(0, 0)
                                             }}>
@@ -85,11 +85,11 @@ const Characters = () => {
                                                     addFavorite(name)
                                                 }>
                                                 {
-                                                    condicion ? <i class="fas fa-heart"></i> : <i class="far fa-heart"></i>
+                                                    foundFavorite(name, list) ? <i class="far fa-heart"></i> : <i class="fas fa-heart"></i>
                                                 }
                                                 </button>
-                                                {/* <i class="fas fa-heart"></i> */}
-                                                {/* <i class="far fa-heart"></i> */}
+                                                {/* <i class="fas fa-heart"></i>   relleno*/}
+                                                {/* <i class="far fa-heart"></i>   vacio  */}  
                                         </div>
                                     </div>
                                 </div>

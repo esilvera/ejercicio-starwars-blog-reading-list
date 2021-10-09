@@ -3,7 +3,7 @@ import { Context } from '../store/appContext';
 
 const StarShips = () => {
 
-    const { store: { starships, path, extension }, actions: { addFavorite } } = useContext(Context);
+    const { store: { starships, path, extension, list }, actions: { addFavorite, foundFavorite } } = useContext(Context);
     const [selected, setSelected] = useState(null);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const StarShips = () => {
                     {
                         !!selected && (
                             <div className="card detail">
-                                <img src={`${path}${selected.name}${extension}`} className="starship-detail" alt="..." />
+                                <img src={`${path}${selected.name}${extension}`} className="starship-detail" />
                                 <div className="card-body">
                                     <h2 className="card-title d-flex justify-content-center mb-3">{selected.name}</h2>
                                     <p className="card-text">
@@ -59,7 +59,11 @@ const StarShips = () => {
                                             className="btn-position"
                                             onClick={() =>
                                                 addFavorite(name)
-                                            }><i class="far fa-heart"></i></button>
+                                            }>
+                                            {
+                                                foundFavorite(name, list) ? <i class="far fa-heart"></i> : <i class="fas fa-heart"></i>
+                                            }
+                                            </button>
                                     </div>
                                 </div>
                             )

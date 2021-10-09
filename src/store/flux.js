@@ -64,8 +64,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             addFavorite: (name) => {
                 const { list } = getStore();
-                //console.log(name);
-
+                console.log("name addFavorite tiene: ", name);
+                
                 const found = list.find(element => element.favorite === name);
                 if (found) return;
                     let newFavorite = {
@@ -78,8 +78,18 @@ const getState = ({ getStore, getActions, setStore }) => {
                     //console.log("newList tiene: ", newList)
 
                     setStore({
-                        list: newList
+                        list: newList,
                     })
+            },
+            foundFavorite: (name, list) => {
+                console.log("name en fondFavorite tiene : ", name)
+                console.log("list tiene: ", list)
+                const found = list.find(element => element.favorite === name);
+                console.log(found)
+                if (!found) {
+                   return true;
+                }
+                return false;
             },
             deleteFavorite: (evento) => {
                 const { list } = getStore();

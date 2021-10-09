@@ -3,7 +3,7 @@ import { Context } from '../store/appContext';
 
 const Planets = () => {
 
-    const { store: { planets, path, extension }, actions: {addFavorite} } = useContext(Context);
+    const { store: { planets, path, extension, list }, actions: {addFavorite, foundFavorite} } = useContext(Context);
     const [selected, setSelected] = useState(null);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const Planets = () => {
                     {
                         !!selected && (
                             <div className="card detail bg-black">
-                                <img src={`${path}${selected.name}${extension}`} className="planet-detail" alt="..." />
+                                <img src={`${path}${selected.name}${extension}`} className="planet-detail" />
                                 <div className="card-body">
                                     <h2 className="card-title d-flex justify-content-center mb-3">{selected.name}</h2>
                                     <p className="card-text">
@@ -58,7 +58,7 @@ const Planets = () => {
                                             <div className="col-md-4 bg-black">
                                                 <div className="card-body">
                                                     <h4 className="card-title">{name}</h4>
-                                                    <button className="btn btn-outline-info btn-detail-planet" onClick={() => {
+                                                    <button className="btn btn-outline-info btn-detail-planet btn-sm" onClick={() => {
                                                         setSelected(planet)
                                                         window.scroll(0, 0)
                                                     }}>
@@ -69,7 +69,11 @@ const Planets = () => {
                                                         className="btn-position"
                                                         onClick={() =>
                                                             addFavorite(name)
-                                                        }><i class="far fa-heart"></i></button>
+                                                        }>
+                                                        {
+                                                            foundFavorite(name, list) ? <i class="far fa-heart"></i> : <i class="fas fa-heart"></i>
+                                                        }
+                                                        </button>
                                                 </div>
                                             </div>
                                         </div>
